@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 addMap.put("name",user.getName());
                 addMap.put("password",user.getPassword());
                 addMap.put("age",user.getAge());
+                addMap.put("date",user.getDate());
                 int effecNum = userDao.insertUser(addMap);
                 if (effecNum>0){
                     return  true;
@@ -59,7 +60,13 @@ public class UserServiceImpl implements UserService {
     public boolean modifyUser(User user) {
         if(user.getId() !=null && user.getId()>0){
             try{
-                int effecNum = userDao.updateUser(user);
+                Map data = new HashMap();
+                data.put("password",user.getPassword());
+                data.put("name",user.getName());
+                data.put("id",user.getId());
+                data.put("age",user.getAge());
+                int effecNum = userDao.updateUser(data);
+                System.err.println(effecNum);
                 if (effecNum>0){
                     return  true;
                 }else{

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chyuexample.demo.dao.UserDao">
     <select id="queryUser" resultType="com.chyuexample.demo.entity.User">
-        SELECT Id,Name,Password,Age
+        SELECT Id,Name,Password,Age,Date
         FROM user
         ORDER BY Id
         DESC
@@ -16,18 +16,12 @@
         Id=#{id}
     </select>
     <insert id="insertUser" parameterType="map">
-        INSERT  INTO  user(Name,Password,Age,Id)
+        INSERT  INTO  user(Name,Password,Age,Id,Date)
          VALUES
-        (#{name},#{password},#{age},#{id})
+        (#{name},#{password},#{age},#{id},#{date})
     </insert>
-    <update id="updateUser" parameterType="com.chyuexample.demo.entity.User">
-        UPDATE user
-        <set>
-            <if test="Name!=null">Name=#{name}</if>
-            <if test="Password!=null">Password=#{password}</if>
-            <if test="Age!=null">Age=#{age}</if>
-        </set>
-      WHERE Id=#{id}
+    <update id="updateUser" parameterType="map" >
+    update user set Name=#{name},Password=#{password},Age=#{age} where Id=#{id}
     </update>
     <delete id="deleteUser">
         DELETE FROM

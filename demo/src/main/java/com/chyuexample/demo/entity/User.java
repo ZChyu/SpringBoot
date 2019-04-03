@@ -4,11 +4,13 @@ package com.chyuexample.demo.entity;/*
  * Email 604641446@qq.com
  * */
 
+
 public class User {
     private Integer Id;
     private  String Name;
     private String Password;
     private String Age;
+    private String Date;
     public  User(){
 
     }
@@ -44,6 +46,15 @@ public class User {
     public void setAge(String age) {
         this.Age = age;
     }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
     @Override
     public  String toString(){
         return "User{" +
@@ -51,6 +62,7 @@ public class User {
                 ", Name='" + Name + '\'' +
                 ", Password=" + Password +
                 ", age=" + Age +
+                ",date="+ Date +
                 '}';
 
     }

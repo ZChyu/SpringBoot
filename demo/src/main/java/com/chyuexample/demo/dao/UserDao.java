@@ -16,7 +16,7 @@ public interface UserDao {
     List<User>queryUser();
     User queryUserId(int uerId);
     int  insertUser(Map para);
-    int updateUser(User user);
+    int updateUser(Map para);
     int deleteUser(int userId);
     List<User> login(Map para);
 

@@ -25,12 +25,9 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/listuser",method = RequestMethod.POST)
-    public Map<String,Object> ListUser( ){
-        Map<String,Object> modelMap = new HashMap<String, Object>();
-        List<User> list = userService.getUserList();
-        System.out.println("-----listuser------");
-        modelMap.put("userlist",list);
-        return modelMap;
+    public Object ListUser( ){
+
+        return ResultUtil.success(userService.getUserList());
 
     }
     @RequestMapping(value = "/getuserbyid",method = RequestMethod.POST)
@@ -44,31 +41,24 @@ public class UserController {
         return ResultUtil.success(userService.getUserById(Id));
 
     }
-    @RequestMapping(value = "/adduser",method = RequestMethod.POST)
+    @RequestMapping(value = "/adduser",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> addUser(User user){ //@RequestBody 接收xml啥
-        user.setAge(user.getAge());
-        user.setId(user.getId());
-        user.setName(user.getName());
-        user.setPassword(user.getPassword());
-        Map<String,Object> modelMap = new HashMap<String, Object>();
-        modelMap.put("success",userService.addUser(user));
-        return modelMap;
+    public Object addUser(User user){ //@RequestBody 接收xml啥
+        System.err.println(user.toString());
+        return ResultUtil.success(userService.addUser(user));
 
     }
-    @RequestMapping(value = "/modifyuser",method = RequestMethod.POST)
-    public Map<String,Object> modifyUser( User user){ //@RequestBody 接收xml啥
-        Map<String,Object> modelMap = new HashMap<String, Object>();
-        modelMap.put("success",userService.modifyUser(user));
-        return modelMap;
+    @RequestMapping(value = "/modifyuser",method = RequestMethod.GET)
+    @ResponseBody
+    public Object modifyUser( User user){ //@RequestBody 接收xml啥
+        System.err.println(user.toString());
+        return ResultUtil.success(userService.modifyUser(user));
 
     }
     @RequestMapping(value = "/deleteyuser",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> deleteyUser(Integer Id){ //@RequestBody 接收xml啥
-        Map<String,Object> modelMap = new HashMap<String, Object>();
-        modelMap.put("success",userService.deleteUser(Id));
-        return modelMap;
+    public Object deleteyUser(Integer Id){ //@RequestBody 接收xml啥
+        return ResultUtil.success(userService.deleteUser(Id));
 
     }
     @RequestMapping(value = "/loginuser",method = RequestMethod.POST)
