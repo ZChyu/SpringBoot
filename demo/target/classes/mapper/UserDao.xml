@@ -21,7 +21,7 @@
         (#{name},#{password},#{age},#{id},#{date})
     </insert>
     <update id="updateUser" parameterType="map" >
-    update user set Name=#{name},Password=#{password},Age=#{age} where Id=#{id}
+    update user set Name=#{name},Password=#{password},Age=#{age},Date=#{date} where Id=#{id}
     </update>
     <delete id="deleteUser">
         DELETE FROM

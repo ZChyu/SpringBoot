@@ -65,6 +65,7 @@ public class UserServiceImpl implements UserService {
                 data.put("name",user.getName());
                 data.put("id",user.getId());
                 data.put("age",user.getAge());
+                data.put("date",user.getDate());
                 int effecNum = userDao.updateUser(data);
                 System.err.println(effecNum);
                 if (effecNum>0){
