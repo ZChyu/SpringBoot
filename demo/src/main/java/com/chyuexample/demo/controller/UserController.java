@@ -4,14 +4,17 @@ package com.chyuexample.demo.controller;/*
  * Email 604641446@qq.com
  * */
 
+import com.chyuexample.demo.annotation.AuthToken;
 import com.chyuexample.demo.entity.Result;
 import com.chyuexample.demo.entity.User;
 import com.chyuexample.demo.service.UserService;
+import com.chyuexample.demo.utils.RedisUtil;
 import com.chyuexample.demo.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -21,10 +24,12 @@ import java.util.Map;
 @RequestMapping("/superadmin") //根路由
 @CrossOrigin
 public class UserController {
+
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/listuser", method = RequestMethod.POST)
+    @AuthToken("查询所有用户")
+    @RequestMapping(value = "/listuser", method = RequestMethod.GET)
     public Object ListUser() {
 
         return ResultUtil.success(userService.getUserList());
