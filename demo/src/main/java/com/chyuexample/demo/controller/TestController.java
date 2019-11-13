@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping(value = "/index")
+@RequestMapping(value = "/index2")
 public class TestController {
     @RequestMapping(value = "login")
     public String login(){
